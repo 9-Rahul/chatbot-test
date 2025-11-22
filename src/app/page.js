@@ -4,10 +4,21 @@ import Message from '../components/Message'
 import './globals.css'
 
 export default function Page() {
-  const [messages, setMessages] = useState([]) // {role, text}
+  const [messages, setMessages] = useState([])
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
   const listRef = useRef(null)
+
+  useEffect(() => {
+    async function loadHistory() {
+      const res = await fetch("/api/chatHistory");
+      const data = await res.json();
+      setMessages(data);
+    }
+
+    loadHistory();
+  }, []);
+
 
   useEffect(() => {
     // auto-scroll to bottom when messages change
@@ -31,7 +42,6 @@ export default function Page() {
       })
 
       const json = await res.json()
-      // prefer `reply`, fallback to error string
       const botText = json?.reply ?? (json?.error ? `Error: ${json.error}` : 'No response')
       setMessages(prev => [...prev, { role: 'bot', text: botText }])
     } catch (err) {
@@ -48,6 +58,14 @@ export default function Page() {
     }
   }
 
+  async function clearChat() {
+    await fetch("/api/clearChat", {
+      method: "DELETE",
+    });
+
+    setMessages([]);
+  }
+
   return (
     <main className="app-root">
       <header className="app-header">
@@ -57,6 +75,10 @@ export default function Page() {
             <p className="subtitle">Small demo using Google Gemini (server-side)</p>
           </div>
         </div>
+
+        <button className="clear-btn" onClick={clearChat}>
+          Clear Chat
+        </button>
       </header>
 
       <section className="chat-area">
