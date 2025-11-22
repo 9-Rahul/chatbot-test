@@ -27,6 +27,7 @@ body,
   border-bottom: 1px solid #dcd6c8;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   background: rgba(250, 247, 242, 0.7);
   backdrop-filter: blur(4px);
@@ -48,6 +49,20 @@ body,
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+.clear-btn {
+  background: #ff4d4d;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.clear-btn:hover {
+  background: #e63636;
 }
 
 .chat-area {
@@ -205,7 +220,6 @@ body,
   border-top: 1px solid #dcd6c8;
 }
 
-/* INLINE CODE */
 code {
   background: #ece8e0;
   padding: 2px 6px;

@@ -58,6 +58,14 @@ export default function Page() {
     }
   }
 
+  async function clearChat() {
+    await fetch("/api/clearChat", {
+      method: "DELETE",
+    });
+
+    setMessages([]);
+  }
+
   return (
     <main className="app-root">
       <header className="app-header">
@@ -67,6 +75,10 @@ export default function Page() {
             <p className="subtitle">Small demo using Google Gemini (server-side)</p>
           </div>
         </div>
+
+        <button className="clear-btn" onClick={clearChat}>
+          Clear Chat
+        </button>
       </header>
 
       <section className="chat-area">
