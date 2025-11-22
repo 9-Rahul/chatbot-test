@@ -47,8 +47,20 @@ body,
 
 .brand {
   display: flex;
+  flex-direction: row;
   gap: 10px;
   align-items: center;
+}
+
+.logo img {
+  height: 45px;
+  width: 70px;
+  border-radius: 6px;
+}
+
+.logo:hover {
+  box-shadow: #2b2b2b;
+  cursor: pointer;
 }
 
 .clear-btn {

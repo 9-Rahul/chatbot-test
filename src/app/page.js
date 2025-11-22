@@ -70,6 +70,7 @@ export default function Page() {
     <main className="app-root">
       <header className="app-header">
         <div className="brand">
+          <div className="logo"><img src="/logo.png" alt="logo" /></div>
           <div>
             <h1>Gemini Chat</h1>
             <p className="subtitle">Small demo using Google Gemini (server-side)</p>
